@@ -15,7 +15,7 @@ body{
 }
 :root{
     --border-color: #fff5;
-    --w-image: 500px;
+    --w-image: 400px;
     --calculate: calc(3 / 2);
 }
 header{
@@ -27,7 +27,7 @@ header{
     border-bottom: 1px solid var(--border-color);
 }
 header .logo img{
-    width: 80%;
+    width: 100%;
 }
 header .logo{
     display: flex;
@@ -97,6 +97,7 @@ header nav{
     height: 100%;
     position: absolute;
     top: 0;
+    right: 0;
     left: calc(100% - calc(var(--w-image) * var(--calculate)));
     padding: 20px;
     display: flex;
@@ -129,6 +130,7 @@ header nav{
 .carousel .list .item .main-content .content h2{
     font-size: 5em;
     font-family: 'Aboreto';
+    line-height: 1em;
 }
 .carousel .list .item .main-content .content .price{
     font-family: 'Aboreto';
@@ -145,6 +147,10 @@ header nav{
     border-radius: 30px;
     border: none;
     margin-top: 20px;
+    cursor: pointer;
+}
+.description{
+    width: 80%;
 }
 .arrows{
     position: absolute;
@@ -154,7 +160,9 @@ header nav{
     grid-template-columns: repeat(2, 50px);
     grid-template-rows: 50px;
     justify-content: end;
-    gap: 10px;
+    gap: 20px;
+    left: -80px;
+    bottom: 80px;
 }
 .arrows button{
     background-color: transparent;
@@ -164,7 +172,7 @@ header nav{
     font-size: large;
     font-weight: bold;
     line-height: 0;
-    box-shadow: 0 10px 40px #5555;
+    box-shadow: 10px 10px 40px 10px #5555;
     cursor: pointer;
     transition: 0.5s;
 }
@@ -185,6 +193,7 @@ header nav{
 .carousel .list .item.other_1,
 .carousel .list .item.other_2{
     pointer-events: none;
+    z-index: 0;
 }
 .carousel .list .item.active .main-content{
     animation: showContent 1s ease-in-out 1 forwards;
@@ -252,6 +261,14 @@ header nav{
 .prev .list .item.other_2 .main-content{
     opacity: 0;
 }
+@media screen and (max-width: 1024px) {
+    :root {
+        --w-image: 300px;
+    }
+    .carousel .list .item .main-content .content h2 {
+        font-size: 3em;
+    }
+}
 @media screen and (max-width: 1023px){
     :root{
         --calculate: 1;
@@ -262,10 +279,28 @@ header nav{
     }
 }
 @media screen and (max-width: 767px){
+    :root {
+        --w-image: 100%;
+    }
+    header {
+        grid-template-columns: 80px 1fr;
+    }
+    header nav ul {
+        gap: 10px;
+        padding-right: 10px;
+    }
     .carousel .list .item .image{
         width: 100%;
+        height: 60%;
+        opacity: 0.8;
         left: 0;
         justify-content: center;
+    }
+    .carousel .list::before {
+        display: none;
+    }
+    .carousel .list .item .main-content {
+        grid-template-columns: 1fr;
     }
     .carousel .list .item .image figcaption{
         color: #fff;
@@ -274,9 +309,23 @@ header nav{
     }
     .carousel .list .item .main-content .content{
         display: none;
+        padding: 100px 20px 20px 20px;
+        z-index: 5;
+        position: relative;
+    }
+    .carousel .list .item .main-content .content h2 {
+        font-size: 2.5em;
+    }
+    .description {
+        width: 100%;
+        font-size: 14px;
+    }
+    .carousel .list .item .image img {
+        width: 60%;
     }
     .arrows{
-        left: 50%;
-        justify-content: center;
+        left: 20px;
+        bottom: 20px;
+        /* justify-content: center; */
     }
 }
